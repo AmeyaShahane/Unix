@@ -1,0 +1,33 @@
+#!/bin/csh -f
+# Ameya Shahane
+# Assignment 8.4 #
+# May 2, 2017
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 8.4
+echo Due Date: May 2, 2017
+echo " " # print a blank line
+
+# Grades program
+echo -n "What was your grade on the test?"
+set score = $<
+switch ("$score")
+case 10*:
+	echo You got an A\!
+	breaksw
+case 9*:
+	echo You got an A\!
+	breaksw
+case 8*:
+	echo You got a B.
+	breaksw
+case 7*
+	echo "Your're average."
+	breaksw
+case 6*
+	echo Better study harder
+	breaksw
+default:
+	echo Better luck next time.
+endsw

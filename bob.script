@@ -1,0 +1,38 @@
+#!/bin/csh 
+# Ameya Shahane
+# Assignment Midterm Part2.2 #
+# March 21, 2017
+
+# printing assignment details
+echo " " # print a blank line
+echo "Name: Ameya Shahane"
+echo "Assignment Number: Midterm Part2.2"
+echo "Due Date: March 21, 2017"
+echo " " # print a blank line
+
+echo " "
+echo "2.2 BobTheWorm is a story with some mistakes in it. "
+echo "Using the C shell, write a sed script named bob to make the following changes:"
+echo "		a. print a header above the file:"
+echo "			Bob The Worm"
+echo "			by Garret Simonson"
+echo "		b. change bob to Bob and gary to Gary throughout file"
+echo "		c. fix the double "the" in line 6"
+echo "		d. delete all blank lines"
+echo "		e. add a footer at the end of the file:"
+echo "			The End"
+echo "			copyright 2004"
+echo " "
+echo " "
+
+sed '1i  Bob The Worm\\
+by Garret Simonson\
+$a The End\\
+copyright 2004\
+s/bob/Bob/g;s/gary/Gary/g\
+6s/the the/the/g\
+/^[0-9,A-Z,a-z]/'!'d\
+' BobTheWorm
+
+echo " "
+echo " "

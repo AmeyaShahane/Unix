@@ -1,0 +1,49 @@
+#!/bin/bash
+# Ameya Shahane
+# Assignment 5.2 #
+# March 14, 2017
+
+
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 5.2
+echo Due Date: March 14, 2017
+echo " " # print a blank line
+
+echo 1. print all the phone numbers 
+echo " "
+nawk -F: '{print $2}' lab3.data
+echo " "
+echo 2. print Dans phone number
+echo " "
+nawk -F: '/^Dan/ {print $2}' lab3.data
+echo " "
+echo 3. print Susans name and phone number
+echo " "
+nawk -F: '/^Susan/ {print $1,$2}' lab3.data
+echo " "
+echo 4. print all last names beginning with D
+echo " "
+nawk -F'[ :]' '$2 ~ /^D/ {print $2}' lab3.data
+echo " "
+echo 5. print all first names beginning with either a C or E
+echo " "
+nawk -F'[ :]' '/^C|^E/ {print $1}' lab3.data
+echo " "
+echo 6. print all first names containing only four characters
+echo " "
+nawk -F'[ :]' 'length($1)==4 {print $1}' lab3.data
+echo " "
+echo 7. Print the first names of all those in the 916 area code
+echo " "
+nawk -F'[ :]' '$3 ~ /(916)/ {print $1}' lab3.data
+echo " "
+echo 8. Print Mikes campaign contributions. Each value with leading dollar sign
+echo " "
+nawk -F'[ :]' '$1 ~ /Mike/ {print "$"$5, "$",$6, "$"$7}' lab3.data
+echo " "
+echo 9. Print last names followed by a comm and the first name
+nawk -F'[ :]' '{print $2 ",", $1}' lab3.data
+echo " "
+

@@ -1,0 +1,31 @@
+#!/bin/sh
+# Ameya Shahane
+# Assignment 7.5 #
+# April 18, 2017
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 7.5
+echo Due Date: April 18, 2017
+echo " " # print a blank line
+
+set -e
+if [ -z "$1" ] 
+then
+	echo "Usage: checking loginname"
+else
+	if grep "$1" /etc/passwd > /dev/null 2>&1
+	then
+		echo Found $1 in the /etc/passwd file.
+		if who | grep "$1" > /dev/null 2>&1
+		then
+			echo user $1 is logged on
+			echo processes running are as below
+			echo `ps -ef`
+		else
+			echo user $1 is not logged on
+		fi 
+	else
+		echo No such user on our system
+	fi
+fi

@@ -1,0 +1,25 @@
+#!/bin/sh
+# Ameya Shahane
+# Assignment 7.3 #
+# April 18, 2017
+# The reason for writing this script is to display the datafile in sorted order
+
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 7.3
+echo Due Date: April 18, 2017
+echo " " # print a blank line
+
+set -e
+if [ -z "$1" ] 
+then
+	echo "Usage: checking loginname"
+else
+	if grep "$1" /etc/passwd > /dev/null 2>&1
+	then
+		echo Found $1 in the /etc/passwd file.
+	else
+		echo No such user on our system
+	fi
+fi

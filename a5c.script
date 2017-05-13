@@ -1,0 +1,8 @@
+# Ameya Shahane
+# Assignment 5.3 #
+# March 14, 2017
+# command ran to get output is  nawk -F'[ :]' -f a5c.script lab3.data 
+
+$2 ~ /Savage/ {print "Full names and phone numbers for the Saveges: ",$1,$2,$3,$4}
+$1 ~ /Chet/ {print "Chets contributions: ", $5, $6, $7}
+$5 ~ /250/ {print "Contributed $250 the first month: ", $0}

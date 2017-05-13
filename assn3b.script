@@ -1,0 +1,62 @@
+#!/bin/csh
+# Ameya Shahane
+# Assignment 3.2 #
+# Feb 28, 2017
+
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 3.2
+echo Due Date: Feb 28, 2017
+echo " " # print a blank line
+
+# Exercise 1
+echo " "
+echo Exercise 1 
+grep San datebook
+
+# Exercise 2
+echo " "
+echo Exercise 2
+grep '^J' datebook 
+
+# Exercise 3
+echo " "
+echo Exercise 3
+grep '700$' datebook
+
+# Exercise 4
+echo " "
+echo Exercise 4 
+grep -v '834' datebook
+
+# Exercise 5
+echo " "
+echo Exercise 5 
+grep ':12/' datebook
+
+# Exercise 6
+echo " "
+echo Exercise 6 
+grep ':408-' datebook
+
+# Exercise 7
+echo " "
+echo Exercise 7 
+grep '[A-Z][a-z]\{4\}, [A-Z]' datebook
+
+# Exercise 8
+echo " "
+echo Exercise 8 
+grep ' [Kk][A-Za-z]\{1,\}:' datebook
+
+# Exercise 9
+echo " "
+echo Exercise 9 
+grep -n '[0-9]\{6\}$' datebook 
+
+# Exercise 10
+echo " "
+echo Exercise 10 
+grep '[lL]incoln' datebook # can also be written as grep -i 'lincoln' datebook, however it would include lines containing words such as LINcoln, the question expects lines with only Lincoln or lincoln
+

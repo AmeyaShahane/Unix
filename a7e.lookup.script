@@ -1,0 +1,97 @@
+#!/bin/sh
+# Ameya Shahane
+# Assignment 7.4 #
+# April 18, 2017
+
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 7.4
+echo Due Date: April 18, 2017
+echo " " # print a blank line
+
+set -e
+if [ -n "$1" ] 
+then
+	if grep "$1" /etc/passwd > /dev/null 2>&1
+	then
+		echo Found $1 in the /etc/passwd file.
+	else
+		echo No such user on our system
+		exit 0
+	fi
+fi
+
+echo "Checking if dagtafile exists and is readable and writable"
+file=datafile
+if [ -f $file ] && [ -r $file ] && [ -w $file ]
+then
+	echo "File exists and is readable and writeable"
+else
+	echo "File not exists or not readable and writable"
+	exit 1
+fi
+
+echo "Select one:"
+cat << EOF
+	[A] Add Entry
+	[D] Delete Entry
+	[V] View Entry
+	[E] Exit
+EOF
+read choice
+case "$choice" in
+	A) 	echo Add Entry
+       		echo "Enter name"
+        	read name
+                if grep "$name" datafile > /dev/null 2>&1 
+		then
+			echo "Entry already exists in the file"
+			exit 1
+		else
+                	echo "Enter phone"
+                	read phone
+                	echo "Enter address"
+                	read address
+                	echo "Enter birth date"
+                	read birthdate
+                	echo "enter salary"
+                	read salary
+			echo $name:$phone:$address:$birthdate:$salary>>datafile
+        		sort +1 -2 -o datafile datafile
+        		echo "Entry added to the datafile"
+        		cat datafile | nawk '{print NR, $0}' | grep "$name"
+		fi
+		;;
+	D) echo Delete Entry
+                echo "Enter name"
+                read name
+                if grep "$name" datafile > /dev/null 2>&1 
+		then
+                        echo "Entry exists in the file"
+        	 	line=`cat datafile | nawk '{print NR,$0}' | grep "$name"`
+			set $line
+			linenum=$1d
+			sed -i $1d datafile
+			echo "Entry Deleted"
+                else
+                        echo "Entry does not exist in the file"
+			exit 2
+                fi
+		;;
+	V) echo View Entry
+                echo "Enter name"
+                read name
+                if cat datafile | nawk '{print NR, $0}' | grep "$name"
+                then
+                        echo "Entry exists in the file"
+                        cat datafile | nawk '{print NR, $0}' | grep "$name"
+                else
+                        echo "Entry does not exist in the file"
+			exit 3
+		fi
+		;;
+	E) echo "Good-Bye"
+	   exit 4
+		;;
+esac

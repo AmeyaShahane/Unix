@@ -1,0 +1,67 @@
+#!/bin/csh
+# Ameya Shahane
+# Assignment Final #
+# May 18, 2017
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: Final
+echo Due Date: May 18, 2017
+echo " " # print a blank line
+echo " "
+
+# Purpose of this script is to write a program that will mail a list of users, one at a time an invitation to a picnic"
+
+# File testing to check if friends file exists and is readable
+
+if ( ! -e "friends" ) then 					# check if friends file exists
+	echo "friends file does not exist!"			# give error message if file does not exist
+else					
+	if ( ! -r "friends" ) then				# check if friends file is readable
+		echo "friends file exists but not readable!"	# give error message if file not readable
+	else
+		echo "friends file exists and is readable"	# give message if file exists and readable
+	endif
+endif
+
+echo " "
+
+# File testing to check if invite file exists and is readable
+
+if ( ! -e "invite" ) then					# check if invite file exists
+	echo "invite file does not exist!"			# give error message if invite file does not exist
+else
+	if ( ! -r "invite" ) then				# check if invite file is readable
+		echo "invite file exists but  not readable!"	# give error message if invite file not exist
+	else
+		echo "invite file exists and is readable"	# give message if file exists and is readable
+	endif
+endif
+
+echo " "
+
+# Loop to send mail invitation to each users (except Popeye)
+
+@ i=0								# initiate a variable for number of people who received mail
+
+foreach user (`cat friends`)					# main loop to get list of friends
+	if ( $user != "Popeye" ) then				# exclude Popeye
+		@ i++						# increase count for number of people
+		if ( $i == 1 ) then				# check if to initialize an array
+			set names=($user)			# initialize an array
+		else			
+			set names = ($names, $user)		# add names to the array
+		endif
+ 		# awk to substitute XXX with the user name and then create an invite file for each user
+		awk -F'[ ]' -v varuser="$user" '{sub(/XXX/,varuser); print}' invite > invite$user
+		sed -i "s/YYY/Ameya/g" invite$user		# sed to substitute YYY with self name
+		set file=invite$user				# set file variable to get line by line contents
+		foreach line ("`cat $file`")			# loop to read through the invite file
+			echo $line				# echo the file instead of mail
+		end
+	endif
+end
+
+echo "Number of people who received mail: "$i			# display number of people who received mail
+echo ""
+echo "List of names of people who received mail: "$names	# display list of peoples who received mail

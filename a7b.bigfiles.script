@@ -1,0 +1,20 @@
+#!/bin/sh
+# Ameya Shahane
+# Assignment 7.2.1 #
+# April 18, 2017
+
+
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 7.2.1
+echo Due Date: April 18, 2017
+echo " " # print a blank line
+
+set -e
+if [ -z "$1" ] || [ -z "$2" ] 
+then
+	echo "Usage: bigfiles mtime size" >&2
+else
+	find  -xdev -mtime -$1 -size +$2 -print
+fi

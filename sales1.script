@@ -1,0 +1,72 @@
+#!/bin/bash
+# Ameya Shahane
+# Assignment Midterm Part2.3 #
+# March 21, 2017
+
+
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: Midterm Part2.3
+echo Due Date: March 21, 2017
+echo " " # print a blank line
+
+echo " "
+echo "3.1 print the file in two sections, east and west, with lines alphabetized by last name within each section, showing per quarter and total sales per person."
+echo " "
+sort +1 -2 Sales > Sales1 		# Sort the file using region and last name
+# Invoke nawk with a delimiter specification
+nawk -F'[ :]' \
+'{ name = $2" "$3; 			# assign first name and last name to the variable name
+  q1 = $4; 				# assign first quarter sales
+  q2 = $5; 				# assign second quarter sales
+  q3 = $6; 				# assign third quarter sales
+  q4 = $7; 				# assign fourth quarter sales
+  total = $4+$5+$6+$7; 			# calculate total sales an assign it to the total variable
+  region = $1; 				# assign region name to a region variable
+  if (region == "west") 		# if region is west then assign values to a west array
+    {j++; west_region[j] = name" Q1:"q1", Q2:"q2", Q3:"q3", Q4:"q4", Total:"total;}
+  else 					# else if region is east, assign values to a east array
+    {i++; east_region[i] = name" Q1:"q1", Q2:"q2", Q3:"q3", Q4:"q4", Total:"total;}
+}
+END { 
+ print "\nRegion: East" 		# print header for east section
+ for (cnt=1; cnt<=i; cnt++) 		# loop for values in east section
+  print east_region[cnt] ; 		# print value of east regions
+ print "\nRegion: West" 		# print header for west section
+ for (cnt=1; cnt<=j; cnt++) 		# loop for values in west section
+  print west_region[cnt]; 		# print value of west regions
+}' Sales1 				# pass the sorted file name
+echo " "
+echo " "
+echo "3.2 print the names of sales people in three groups: "
+echo "	The following people had total sales greater than $270:" 
+echo "	The following people had total sales between $250 and $270:" 
+echo "	The following people had total sales less than $250:"
+echo " "
+# Invoke nawk with a delimiter specification
+nawk -F'[ :]' \
+'{name = $2" "$3;			# assign first name and last name to the variable name
+  total = $4+$5+$6+$7;			# calculate total sales an assign it to the total variable
+  if (total > 270)              	# If statement to check if total > 270          
+    {i++; more_than_270[i] = name;}	# assign values to an array
+  else if (total > 250 && total < 270)	# If statement to check if total between 250 and 270
+    {j++; between250and270[j] = name;}  # assign values to an array
+  else if (total < 250)			# If statement to check total less than 250
+    {k++;lessthan250[k] = name;}	# assign values to an array
+}
+END {
+ print "\nThe following people had total sales greater than $270:"
+ for (cnt=1; cnt<=i; cnt++)		# loop to increament array index
+  print more_than_270[cnt];		# print contents of the array
+ print "\nThe following people had total sales between $250 and $270:"
+ for (cnt=1; cnt<=j; cnt++)		# loop to increament array index
+  print between250and270[cnt];		# print contents of the array
+ print "\nThe following people had total sales less than $250:"
+ for (cnt=1; cnt<=k; cnt++)		# loop to increament array index
+  print lessthan250[cnt];		# print contents of the array
+}' Sales1
+echo " "
+echo " "
+
+

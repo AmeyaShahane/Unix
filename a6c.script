@@ -1,0 +1,23 @@
+# Ameya Shahane
+# Assignment 6.3 #
+# April 4, 2017
+
+# function to return the average of all the contributions for a given month
+function average_contribution(month, month1, month2, month3, num_elements) {
+if (month==1) {return month1/num_elements};
+if (month==2) {return month2/num_elements};
+if (month==3) {return month3/num_elements};
+}
+{ 
+	month1+=$3;
+	month2+=$4;
+	month3+=$5;
+	num_elements=NR;
+}
+END{
+result=average_contribution(month, month1, month2, month3, num_elements);
+print "\nAmeya Shahane";
+print "Assignment 6.3";
+print "April 4, 2017\n";
+printf "Average Contribution for month %s is %6.2f\n", month, result;
+}

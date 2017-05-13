@@ -1,0 +1,54 @@
+#!/bin/bash
+# Ameya Shahane
+# Assignment 4.6 #
+# March 6, 2017
+
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 4.6
+echo Due Date: March 6, 2017
+echo " " # print a blank line
+
+echo Showing contents of the file
+cat students
+
+# Exercise a
+echo " "
+echo a. display only the students majoring in Engineering
+echo " "
+sed -n '/Engineering/p' students
+echo " "
+
+# Exercise b
+echo b. display only the students with a grade of A
+echo " "
+sed -n '/A$/p' students 
+echo " "
+
+# Exercise c
+echo c. display only the students in Marketing with a grade of A or B
+echo " "
+sed -n '/Marketing/p;/*[AB]$/p' students
+echo " "
+
+# Exercise d
+echo d. display all the students, but replace Marketing with Mktg, Engineering with Engr, 
+echo Economics with Econ, History with Hist, and Nursing with Nrsg.
+echo " "
+sed  's/Marketing/Mktg/g;s/Engineering/Engr/g;s/Economics/Econ/g;s/History/Hist/g;s/Nursing/Nrsg/g' students
+echo " "
+
+# Exercise e
+echo e. display all the students not majoring in Economics
+echo " "
+sed -n '/Economics/!p' students 
+echo " "
+
+# Exercise f
+echo f. display the entire file, but insert the comment “**Seniors Rule**” after each Senior
+sed '/Senior /a \
+**Seniors Rule**' students
+echo " "
+
+

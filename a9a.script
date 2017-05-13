@@ -1,0 +1,33 @@
+#!/bin/bash
+# Ameya Shahane
+# Assignment 9.1 #
+# May 9, 2017
+
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 9.1
+echo Due Date: May 9, 2017
+
+# Comment section
+# Name: Ameya Shahane
+# Date: April 28, 2017
+# Purpose: Greet user as per time of the day
+
+you=$LOGNAME
+hour=$( date +%H )
+echo "The time is: $(date +%T )"
+case hour in
+1|2|3|4|5|6|7|8|9|10|11)
+        echo "Good morning, $you!"
+        ;;
+12)
+        echo "Lunch time!"
+        ;;
+13|14|15|16)
+        echo "Good afternoon, $you!"
+        ;;
+*)
+        echo "Good night, $you, Sweet dreams."
+        ;;
+esac

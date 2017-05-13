@@ -1,0 +1,40 @@
+#!/bin/bash
+# Ameya Shahane
+# Assignment 5.1 #
+# March 14, 2017
+
+
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 5.1
+echo Due Date: March 14, 2017
+echo " " # print a blank line
+
+echo a. print the file with the last and first names reversed.
+echo " "
+nawk '{print $2, $1, $3, $4, $5}' students
+echo " "
+echo b. print the names of students getting A’s, sorted by last name.
+echo " "
+nawk '$5 ~ /A/ {print $0 }' students | sort +1 -2 
+echo " "
+echo c. print the names of students not getting A’s.
+echo " "
+nawk '$5 !~ /A/ {print $1, $2}' students
+echo " "
+echo d. print the number of records in the file.
+echo " "
+nawk '{print NR, $0}' students
+echo " "
+echo e. print the records of Juniors majoring in Engineering.
+echo " "
+nawk '$3$4 ~ /EngineeringJunior/ {print $0 }' students
+echo " "
+echo f. print each line in the form “John Doe is a Senior, majoring in Marketing.”
+echo " "
+nawk '{print $1, $2, "is a", $4",", "majoring in", $3}' students
+echo " "
+echo g. print the records of Freshmen, sorted by major.
+echo " "
+nawk '$4 ~ /Freshman/ {print $0 }' students | sort +2 -3 

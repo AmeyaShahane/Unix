@@ -1,0 +1,51 @@
+#!/bin/sh
+# Ameya Shahane
+# Assignment 7.1 #
+# April 18, 2017
+
+
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 7.1
+echo Due Date: April 18, 2017
+echo " " # print a blank line
+
+echo Hello `whoami` 
+echo " "
+echo Current Date Time 
+date
+echo " "
+echo Calendar for this month
+cal
+echo " "
+echo Name of this machine
+hostname
+echo " "
+echo Name and release of this operating system
+cat /etc/motd
+echo " "
+echo List of all files in parent directory
+ls
+echo " "
+echo all processes root is running
+ps -ef | grep root
+echo " "
+echo value of TERM, PATH and HOME
+echo $TERM
+echo $PATH
+echo $HOME
+echo " "
+echo disk usage
+du
+echo " "
+echo group ID
+id -g
+echo " " 
+echo "Please, could you loan me \$50.00?"
+echo " "
+echo "Good-bye, current hour is"  `date +"%H:%M %p"`
+echo " "
+
+
+echo "First line in the script is #!bin/sh, it is needed by the kernel to identify the program that should be interpreting the lines in the script"

@@ -1,0 +1,74 @@
+# Ameya Shahane
+# Assignment 6.2 #
+# April 4, 2017
+
+# function to sort the fullnames array on last name
+function sort(lastnames, fullnames, num_elements, temp, i, j){
+   for (i =1; i <=num_elements; ++i) {
+	for (j=i; lastnames [j-1] > lastnames [j]; --j) {
+		temp=lastnames[j]
+		lastnames[j]=lastnames[j-1]
+		lastnames[j-1] = temp
+		temp=fullnames[j]
+		fullnames[j]=fullnames[j-1]
+		fullnames[j-1] = temp
+	}
+   }
+}
+# begin main script
+BEGIN{FS=":"
+print "\n\nName: Ameya Shahane";
+print "Assignment Number: 6.2";
+print "Due Date: April 4, 2017\n\n";
+# print header
+print "                      ***FIRST QUARTERLY REPORT***"
+print "                    ***CAMPAIGN 2004 CONTRIBUTIONS***"
+print "-------------------------------------------------------------------------"
+print "       NAME               PHONE      Jan   |  Feb  | Mar  | Total Donated"
+print "-------------------------------------------------------------------------"
+}
+{
+# calculate totals and average
+line_total=$3+$4+$5;
+total+=line_total;
+average=total/12;
+# print the record of values
+printf "%-20s%10s %7.2f %7.2f %7.2f %7.2f \n", $1, $2, $3, $4, $5, line_total
+# find the person with highest contribution 
+if (line_total > temp_total) {
+	highest_name=$1; 
+	highest_firstname = firstname;
+	highest_amt=line_total;
+	temp_total=line_total;
+	}
+# build an array of persons with more than $500 contribution
+if (line_total > 500) {
+	split($1, name, / /);
+	firstname = name[1];
+	lastname = name[2];
+	highdoners++;
+	lastnames[highdoners] = lastname;
+	fullnames[highdoners] = $1"--"$2;
+}
+}
+
+END{
+# print summary
+print "-------------------------------------------------------------------------"
+print "                                    SUMMARY"
+print "-------------------------------------------------------------------------"
+printf "The campaign received a total of $%6.2f for this quarter.\n", total;
+printf "The average donation for the 12 contributors was $%6.2f.\n", average;
+printf "The highest total contribution was $%6.2f made by %s.\n", highest_amt, highest_name;
+printf "                     ***THANKS %s***\n", highest_firstname;
+printf "The following people donated over $500 to the campaign.\n";
+printf "They are eligible for the quarterly drawing!!\n";
+printf "Listed are their names (sorted by last names) and phone numbers:\n";
+# call sort function 
+sort(lastnames, fullnames, highdoners)
+# loop in highdoners to print their names 
+for (j=1; j<=highdoners; j++) {
+	print "  ",fullnames[j]
+}
+printf "      Thanks to all of you for your continued support!!\n";
+}

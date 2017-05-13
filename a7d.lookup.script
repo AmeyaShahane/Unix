@@ -1,0 +1,44 @@
+#!/bin/sh
+# Ameya Shahane
+# Assignment 7.4 #
+# April 18, 2017
+
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 7.4
+echo Due Date: April 18, 2017
+echo " " # print a blank line
+
+set -e
+if [ -n "$1" ] 
+then
+	if grep "$1" /etc/passwd > /dev/null 2>&1
+	then
+		echo Found $1 in the /etc/passwd file.
+	else
+		echo No such user on our system
+		exit
+	fi
+fi
+echo "Would you like to add an entry to datafile? [y or yes]"
+read answer
+if [ $answer = "y" ] || [ $answer = "yes" ]
+then
+	echo "Enter name"
+	read name
+	echo "Enter phone"
+	read phone
+	echo "Enter address"
+	read address
+	echo "Enter birth date"
+	read birthdate
+	echo "enter salary"
+	read salary
+	echo $name:$phone:$address:$birthdate:$salary>>datafile
+	sort +1 -2 -o datafile datafile
+	echo "Entry added to the datafile"
+	cat datafile | nawk -F'[:]' '{print NR, $0}' | grep "$name"
+else
+	echo "Good-bye"
+fi

@@ -1,0 +1,44 @@
+#!/bin/bash
+# Ameya Shahane
+# Assignment 9.2 #
+# May 9, 2017
+
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 9.2
+echo Due Date: May 9, 2017
+
+# Comment section
+# Name: Ameya Shahane
+# Date: April 28, 2017
+# Purpose: Create a menu of foods and request user to select one. Greet user as per menu selection
+
+while true; do
+	PS3="Please make a selection. "
+	select choice in "steak and potatoes" "fish and chips" "soup and salad"
+	do
+		case "$choice" in
+		"steak and potatoes")
+			echo "Stick to your ribs."
+			echo "Watch your cholesterol."
+			echo "Enjoy your meal."
+			break
+			;;
+		"fish and chips")
+			echo "British are coming!"
+			echo "Enjoy your meal."
+			break
+			;;
+		"soup and salad")	
+			echo "Health foods..."
+			echo "Dieting is so boring."
+			echo "Enjoy your meal."
+			exit
+			;;
+		*)
+			echo "Select options are only 1, 2 or 3!"
+			;;
+	esac
+	done
+done

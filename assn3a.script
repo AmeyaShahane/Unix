@@ -1,0 +1,51 @@
+#!/bin/csh
+# Ameya Shahane
+# Assignment 3.1 #
+# Feb 28, 2017
+
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 3.1
+echo Due Date: Feb 28, 2017
+echo " " # print a blank line
+
+# print your user name
+echo printing your user name
+whoami
+echo " "
+
+# print current date 
+echo printing the current date
+date
+echo " "
+
+# print all the users currently logged on your computer
+echo printing all the users currently logged on your computer
+users
+echo " "
+
+# print your present working directory
+echo printing your present working directory
+pwd
+echo " "
+
+# print your mounted filesystems
+echo printing your mounted filesystems
+df
+echo " "
+
+# print current processses that end with d
+echo printing current processes that end with d
+ps -ef | grep d$
+echo " "
+
+# print the contents of your /etc/hosts file
+echo printing the contents of your /etc/hosts file
+cat /etc/hosts
+echo " "
+
+# print the line of the /etc/passwd file containing your information
+echo printing the line of the /etc/passwd file containing your information
+grep mickey /etc/passwd
+echo " "

@@ -1,0 +1,33 @@
+#!/bin/sh
+# Ameya Shahane
+# Assignment 7.3 #
+# April 18, 2017
+
+
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 7.3
+echo Due Date: April 18, 2017
+echo " " # print a blank line
+
+set -e
+echo "Enter your Full name (firstname middlename lastname):"
+read name
+set $name
+echo "Hello " $1
+echo "Enter your year of birth"
+read byear
+tyear=`date +"%Y"`
+age=`expr $tyear - $byear`
+echo Your Age is $age 
+echo "What is your login id"
+read lid
+echo your user id is `grep $lid /etc/passwd | nawk -F'[:]' '{print $3}'`
+echo your home directory is `echo $HOME`
+echo " "
+echo you are running the following processes `ps -ef | grep $lid`
+echo " "
+cday=`date +"%A"`
+ctime=`date +"%T %p"`
+echo The day of the week is $cday and the current time is $ctime 

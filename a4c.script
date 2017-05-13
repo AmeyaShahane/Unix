@@ -1,0 +1,10 @@
+# Ameya Shahane
+# Assignment 4.8 #
+# March 6, 2017
+
+1 i\PERSONAL FILE 
+/500$/d 
+# to reverse names, hold first name follwed by space and second name followed by :
+# and then revese them
+s/^\([^ ]*\) \([^:]*\)/\2 \1/ 
+$ a\THE END 

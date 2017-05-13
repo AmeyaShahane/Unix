@@ -1,0 +1,29 @@
+#!/bin/csh
+# Ameya Shahane
+# Assignment 8.3 #
+# May 2, 2017
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 8.3
+echo Due Date: May 2, 2017
+echo " " # print a blank line
+
+if ( "$1" == "" ) then
+	echo "Usage: checking loginname"
+else
+	set checkuser = `grep "$1" /etc/passwd`
+	if ( "$checkuser" != "" ) then
+		echo Found $1 in the /etc/passwd file
+		set checkprocess = `who | grep "$1"`
+		if ( "$checkprocess" != "" ) then
+			echo user $1 is logged on
+			echo processes running are as below
+			echo `ps -ef`
+		else
+			echo user $1 is not logged on
+		endif 
+	else
+		echo No such user on our system
+	endif
+endif

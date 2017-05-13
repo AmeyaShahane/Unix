@@ -1,0 +1,71 @@
+#!/bin/bash
+# Ameya Shahane
+# Assignment 4.7 #
+# March 6, 2017
+
+# printing assignment details
+echo " " # print a blank line
+echo Name: Ameya Shahane
+echo Assignment Number: 4.7
+echo Due Date: March 6, 2017
+echo " " # print a blank line
+
+echo Showing contents of the file
+cat datebook
+
+# Exercise 1
+echo " "
+echo 1. Change the name Jon to Jonathan
+echo " "
+sed 's/Jon /Jonathan /g' datebook
+echo " "
+
+# Exercise 2
+echo 2. Delete the first three lines
+echo " "
+sed '1,3d' datebook
+echo " "
+
+# Exercise 3
+echo 3. Print lines 5 through 10
+echo " "
+sed -n '5,10p' datebook
+echo " "
+
+# Exercise 4
+echo 4. Delete lines containing Lane
+echo " "
+sed '/Lane/d' datebook 
+echo " "
+
+# Exercise 5
+echo 5. Print all lines where the birthdays are in November or December
+echo " "
+sed -n '/:11\//p;/:12\//p' datebook
+echo " "
+
+# Exercise 6
+echo 6. Append three asterisks to the end of lines starting with Fred
+sed  '/^Fred/s/$/***/' datebook 
+echo " "
+
+# Exercise 7
+echo 7.Replace the line containing Jose with JOSE HAS RETIRED
+echo Note: Changing the question to replace line that STARTS with JOSE, else
+echo       line containing San Jose is also being replaced, which is probably
+echo	   not what is expected here.
+echo " "
+sed '/^Jose/c JOSE HAS RETIRED' datebook
+echo " "
+
+# Exercise 8
+echo 8. "Change Popeye's birthday to 11/14/46. Assume you don't know Popeye's original birthday" 
+echo 	Use a regular expression to search for it
+sed '/^Popeye/s,[0-9]\+/[0-9]\+/[0-9]\+,11/14/46,' datebook
+echo " "
+
+# Exercise 9
+echo 9. Delete all blank lines
+echo	Delete lines that do not start with a number or alphabet.
+sed  '/^[0-9,A-Z,a-z]/!d' datebook
+echo " "
